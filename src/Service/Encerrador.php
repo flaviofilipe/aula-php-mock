@@ -3,11 +3,9 @@
 namespace Alura\Leilao\Service;
 
 use Alura\Leilao\Dao\Leilao as LeilaoDao;
-use DomainException;
 
 class Encerrador
 {
-
     private $dao;
     private $enviadorEmail;
 
@@ -27,7 +25,7 @@ class Encerrador
                     $leilao->finaliza();
                     $this->dao->atualiza($leilao);
                     $this->enviadorEmail->notificarTerminoLeilao($leilao);
-                } catch (DomainException $e) {
+                } catch (\DomainException $e) {
                     error_log($e->getMessage());
                 }
             }

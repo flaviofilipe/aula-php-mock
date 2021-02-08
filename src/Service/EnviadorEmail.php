@@ -3,7 +3,6 @@
 namespace Alura\Leilao\Service;
 
 use Alura\Leilao\Model\Leilao;
-use DomainException;
 
 class EnviadorEmail
 {
@@ -12,11 +11,11 @@ class EnviadorEmail
         $sucesso = mail(
             'usuario@email.com',
             'Leilão finalizado',
-            'O leilão para ' . $leilao->recuperarDescricao() . 'foi finalizado'
+            'O leilão para ' . $leilao->recuperarDescricao() . ' foi finalizado'
         );
 
-        if(!$sucesso){
-            throw new DomainException('Erro ao enviar e-mail');
+        if (!$sucesso) {
+            throw new \DomainException('Erro ao enviar e-mail');
         }
     }
 }
